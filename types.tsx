@@ -25,11 +25,29 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> = Nati
 >;
 
 export type RootTabParamList = {
-  TabOne: undefined;
-  TabTwo: undefined;
+  InboxTab: undefined;
+  HistoryTab: undefined;
+  TempalteTab: undefined;
+  TaskTab: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
   BottomTabScreenProps<RootTabParamList, Screen>,
   NativeStackScreenProps<RootStackParamList>
 >;
+
+
+export type Feedback = {
+  isPositive: boolean;
+  message: string;
+};
+
+export type Settings = {
+  darkMode: boolean;
+};
+
+export type User = {
+  username: string;
+  id: string;
+  uniqId: string;
+};
