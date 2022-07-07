@@ -96,7 +96,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="TempalteTab"
-        component={HistoryTab}
+        component={TemplateTab}
         options={{
           title: 'Tempaltes',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
@@ -104,7 +104,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="TaskTab"
-        component={HistoryTab}
+        component={TaskTab}
         options={{
           title: 'Tasks',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,

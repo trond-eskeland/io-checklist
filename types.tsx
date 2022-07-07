@@ -36,7 +36,6 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> = Composit
   NativeStackScreenProps<RootStackParamList>
 >;
 
-
 export type Feedback = {
   isPositive: boolean;
   message: string;
