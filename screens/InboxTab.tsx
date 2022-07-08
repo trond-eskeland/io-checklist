@@ -3,7 +3,9 @@ import React from 'react';
 import { StyleSheet, TouchableHighlight, FlatList } from 'react-native';
 
 import InboxListItem from '../components/InboxListItem';
+import RoundButton from '../components/RoundButton';
 import ScreenHeaderTemplate from '../components/ScreenHeaderTemplate';
+import SearchBar from '../components/SearchBar';
 import { Text, View } from '../components/Themed';
 import Layout from '../constants/Layout';
 import { RootTabScreenProps } from '../types';
@@ -34,11 +36,21 @@ export default function InboxTab({ navigation }: RootTabScreenProps<'InboxTab'>)
       due: 'Friday',
       color: 'green',
     },
+    {
+      id: '58694a0f-3da1-4711f-bd6-145571e29d72',
+      icon: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Other stuff',
+      project: 'Personal',
+      due: 'Friday',
+      color: 'orange',
+    },
   ];
 
   return (
     <View style={styles.container}>
-      <ScreenHeaderTemplate title="Inbox" />
+      {/* <ScreenHeaderTemplate title="Inbox" /> */}
+      <SearchBar />
+
       <FlatList
         data={tasks}
         renderItem={({ item, index, separators }) => (

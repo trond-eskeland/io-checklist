@@ -10,11 +10,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { ColorSchemeName, Pressable } from 'react-native';
 
+import LeftHeaderComponent from '../components/LeftHeaderComponent';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import EditTemplateScreen from '../screens/EditTemplateScreen';
 import HistoryTab from '../screens/HistoryTab';
 import InboxTab from '../screens/InboxTab';
+import ManageTeam from '../screens/ManageTeam';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import TaskTab from '../screens/TaskTab';
@@ -50,6 +52,7 @@ function RootNavigator() {
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen name="ManageTeam" component={ManageTeam} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -77,6 +80,7 @@ function BottomTabNavigator() {
           title: 'Inbox',
           headerStyle: { backgroundColor: 'transparent' },
           tabBarIcon: ({ color }) => <TabBarIcon name="mail-outline" color={color} />,
+
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Modal')}
@@ -84,13 +88,14 @@ function BottomTabNavigator() {
                 opacity: pressed ? 0.5 : 1,
               })}>
               <Ionicons
-                name="md-information-circle-outline"
+                name="filter"
                 size={25}
                 color={Colors[colorScheme].black}
                 style={{ marginRight: 15 }}
               />
             </Pressable>
           ),
+          headerLeft: () => <LeftHeaderComponent />,
         })}
       />
       <BottomTab.Screen
@@ -98,15 +103,35 @@ function BottomTabNavigator() {
         component={HistoryTab}
         options={{
           title: 'Archive',
+          headerStyle: { backgroundColor: 'transparent' },
+
           tabBarIcon: ({ color }) => <TabBarIcon name="archive-outline" color={color} />,
+          headerRight: () => (
+            <Pressable
+              onPress={() => navigation.navigate('Modal')}
+              style={({ pressed }) => ({
+                opacity: pressed ? 0.5 : 1,
+              })}>
+              <Ionicons
+                name="filter"
+                size={25}
+                color={Colors[colorScheme].black}
+                style={{ marginRight: 15 }}
+              />
+            </Pressable>
+          ),
+          headerLeft: () => <LeftHeaderComponent />,
         }}
       />
       <BottomTab.Screen
         name="TempalteTab"
         component={TemplateTab}
         options={{
-          title: 'Tempaltes',
-          tabBarIcon: ({ color }) => <TabBarIcon name="build" color={color} />,
+          title: 'Templates',
+          headerStyle: { backgroundColor: 'transparent' },
+          headerLeft: () => <LeftHeaderComponent />,
+
+          tabBarIcon: ({ color }) => <TabBarIcon name="clipboard-outline" color={color} />,
         }}
       />
       <BottomTab.Screen
@@ -114,6 +139,9 @@ function BottomTabNavigator() {
         component={TaskTab}
         options={{
           title: 'Schedule task',
+          headerStyle: { backgroundColor: 'transparent' },
+          headerLeft: () => <LeftHeaderComponent />,
+
           tabBarIcon: ({ color }) => <TabBarIcon name="calendar-outline" color={color} />,
         }}
       />
