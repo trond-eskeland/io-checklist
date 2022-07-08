@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     bottom: 10,
     right: 10,
     height: 70,
-    backgroundColor: '#fff',
     borderRadius: 100,
   },
 });

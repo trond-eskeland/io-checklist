@@ -5,8 +5,9 @@ import Button from '../components/Button';
 import RoundButton from '../components/RoundButton';
 import ScreenHeaderTemplate from '../components/ScreenHeaderTemplate';
 import { Text, View } from '../components/Themed';
+import { RootTabScreenProps } from '../types';
 
-export default function TemplateTab() {
+export default function TemplateTab({ navigation }: RootTabScreenProps<'TempalteTab'>) {
   const renderItem = ({ item }) => {
     return (
       <View>
@@ -20,7 +21,7 @@ export default function TemplateTab() {
 
       <Button>Jadda</Button>
       <FlatList data={[]} renderItem={renderItem} />
-      <RoundButton>
+      <RoundButton onpress={() => navigation.navigate('EditTemplateScreen')}>
         <Text>x</Text>
       </RoundButton>
     </View>

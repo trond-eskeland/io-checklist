@@ -11,7 +11,10 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "strict": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
   },
-  "extends": "expo/tsconfig.base"
+  "extends": "expo/tsconfig.base",
+  "paths": {
+    "@app": ["/constants/*"],
+  }
 }

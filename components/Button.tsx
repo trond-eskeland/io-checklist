@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     minWidth: 150,
     height: 50,
-    backgroundColor: '#fff',
     borderRadius: 8,
   },
   text: {
