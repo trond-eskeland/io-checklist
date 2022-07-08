@@ -9,7 +9,7 @@ const fontBold = 'OpenSans-Bold';
 // const fontBlackItalic = 'Montserrat-BoldItalic';
 // const fontLight = 'Montserrat-Light';
 // const fontLightItalic = 'Montserrat-LightItalic';
-const fontRegular = 'Montserrat-Regular';
+const fontRegular = 'Roboto-Regular';
 
 const styles = StyleSheet.create({
   // This is a lead paragraph. It stands out from regular paragraphs...
@@ -37,9 +37,11 @@ const styles = StyleSheet.create({
   },
   smallText: {
     fontSize: 14,
-    letterSpacing: 0.12,
+    letterSpacing: 0.4,
+    fontFamily: fontRegular,
+
     // fontFamily: fontRegular,
-    // color: Colors.dark.primaryText,
+    color: Colors.light.info,
   },
   blockquote: {
     marginLeft: 8,
@@ -52,7 +54,6 @@ const styles = StyleSheet.create({
     fontSize: 42,
     fontWeight: 'bold',
     fontFamily: fontBold,
-    letterSpacing: 0.41,
     // color: Colors.dark.primaryText,
   },
   h2: {
@@ -67,6 +68,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     letterSpacing: 0.41,
     fontWeight: 'bold',
+    fontFamily: fontBold,
 
     // fontFamily: fontBold,
     // color: Colors.dark.primaryText,

@@ -2,6 +2,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import React from 'react';
 import { StyleSheet, TouchableHighlight, FlatList } from 'react-native';
 
+import InboxListItem from '../components/InboxListItem';
 import ScreenHeaderTemplate from '../components/ScreenHeaderTemplate';
 import { Text, View } from '../components/Themed';
 import Layout from '../constants/Layout';
@@ -41,32 +42,7 @@ export default function InboxTab({ navigation }: RootTabScreenProps<'InboxTab'>)
       <FlatList
         data={tasks}
         renderItem={({ item, index, separators }) => (
-          <TouchableHighlight key={item.key} onPress={() => this._onPress(item)}>
-            <View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  paddingHorizontal: 8,
-                }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <FontAwesome5 name="tag" size={18} color={item.color} />
-                  <Text style={{ ...Layout.styles.h3, paddingLeft: 8 }}> {item.title}</Text>
-                </View>
-                <Text style={{ ...Layout.styles.smallText, color: 'grey' }}>{item.due}</Text>
-              </View>
-              <Text
-                style={{
-                  ...Layout.styles.smallText,
-                  paddingLeft: 33,
-                  paddingBottom: 8,
-                  color: 'grey',
-                }}>
-                {item.project}
-              </Text>
-            </View>
-          </TouchableHighlight>
+          <InboxListItem item={item} index={index} separators={separators} />
         )}
       />
     </View>
