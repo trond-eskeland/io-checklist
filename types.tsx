@@ -58,6 +58,7 @@ export type User = {
 
 export type TemplateActionOption = { type: 'checkbox' } | { type: 'input'; multiLine: boolean };
 export interface TemplateAction {
+  id?: string;
   title?: string;
   options: TemplateActionOption;
   value?: string | number | boolean;

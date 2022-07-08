@@ -5,6 +5,7 @@ import Colors from '../../constants/Colors';
 import { Text, View } from '../Themed';
 
 type CheckBoxProps = {
+  label?: string;
   color?: ColorValue;
   checked?: boolean;
   disabled?: boolean;
@@ -12,18 +13,18 @@ type CheckBoxProps = {
   preview?: boolean;
 };
 
-export default function Checkbox(props: CheckBoxProps) {
-  const Control = (props: CheckBoxProps) => {
-    const { color = 'black', checked, disabled, onPress } = props;
-    return (
-      <TouchableOpacity disabled={disabled} onPress={onPress} style={styles.container}>
-        <View style={[styles.checkbox, { borderColor: color }]}>
-          {checked && <Ionicons name="checkmark" size={24} color={color} />}
-        </View>
-      </TouchableOpacity>
-    );
-  };
+const Control = (props: CheckBoxProps) => {
+  const { color = 'black', checked, disabled, onPress } = props;
+  return (
+    <TouchableOpacity disabled={disabled} onPress={onPress} style={styles.container}>
+      <View style={[styles.checkbox, { borderColor: color }]}>
+        {checked && <Ionicons name="checkmark" size={24} color={color} />}
+      </View>
+    </TouchableOpacity>
+  );
+};
 
+export default function Checkbox(props: CheckBoxProps) {
   if (props.preview) {
     return (
       <View style={styles.preview}>
@@ -32,7 +33,12 @@ export default function Checkbox(props: CheckBoxProps) {
       </View>
     );
   }
-  return <Control {...props} />;
+  return (
+    <View style={styles.preview}>
+      {!!props.label && <Text style={styles.previewText}>{props.label}</Text>}
+      <Control disabled {...props} />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -51,5 +57,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: 8,
+  },
+  previewText: {
+    paddingBottom: 8,
   },
 });

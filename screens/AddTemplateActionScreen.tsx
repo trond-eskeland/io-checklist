@@ -1,6 +1,7 @@
 import { template } from '@babel/core';
-import React from 'react';
+import React, { useState } from 'react';
 import { FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { v4 as uuidv4 } from 'uuid';
 
 import Checkbox from '../components/Form/Checkbox';
 import TextInput from '../components/Form/TextInput';
@@ -12,8 +13,9 @@ import { RootStackScreenProps, TemplateAction, TemplateActionOption } from '../t
 export default function AddTemplateActionScreen({
   navigation,
 }: RootStackScreenProps<'AddTemplateActionScreen'>) {
-  const addTemplate = useStoreState((state) => state.templates.addTemplate);
-  const setAddTemplate = useStoreActions((actions) => actions.templates.setAddTemplate);
+  const [label, setLabel] = useState('My label');
+  const newTemplate = useStoreState((state) => state.templates.newTemplate);
+  const setNewTemplate = useStoreActions((actions) => actions.templates.setNewTemplate);
 
   const controls: { name: string; options: TemplateActionOption; control: () => JSX.Element }[] = [
     {
@@ -27,19 +29,19 @@ export default function AddTemplateActionScreen({
       control: () => <Checkbox color="red" checked preview />,
     },
   ];
+
   const renderItem = ({
     item,
   }: {
     item: { name: string; options: TemplateActionOption; control: () => JSX.Element };
   }) => {
+    const newAction = { title: label, options: item.options, id: uuidv4() };
     return (
       <TouchableOpacity
         onPress={() => {
-          setAddTemplate({
-            ...addTemplate,
-            actions: addTemplate?.actions
-              ? [...addTemplate?.actions, { title: '', options: item.options }]
-              : [],
+          setNewTemplate({
+            ...newTemplate,
+            actions: newTemplate?.actions ? [...newTemplate?.actions, newAction] : [newAction],
           });
           navigation.goBack();
         }}
@@ -51,6 +53,8 @@ export default function AddTemplateActionScreen({
 
   return (
     <View style={styles.container}>
+      <TextInput label="Label" value={label} onChangeText={setLabel} />
+      <Text>Select input form</Text>
       <FlatList data={controls} renderItem={renderItem} />
     </View>
   );

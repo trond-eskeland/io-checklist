@@ -1,31 +1,51 @@
 import { template } from '@babel/core';
 import { Ionicons } from '@expo/vector-icons';
+import { useLinkProps } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { v4 as uuidv4 } from 'uuid';
 
 import Button from '../components/Button';
 import TextInput from '../components/Form/TextInput';
+import componentsMapper from '../components/Form/componentsMapper';
 import RoundButton from '../components/RoundButton';
-import { View, SafeAreaView } from '../components/Themed';
+import { View, SafeAreaView, Text } from '../components/Themed';
 import { useStoreActions, useStoreState } from '../store';
-import { RootStackScreenProps } from '../types';
+import { RootStackScreenProps, TemplateAction } from '../types';
 
 export default function AddTemplateScreen({
   navigation,
   route,
 }: RootStackScreenProps<'AddTemplateScreen'>) {
-  const addTemplate = useStoreState((state) => state.templates.addTemplate);
-  const setAddTemplate = useStoreActions((actions) => actions.templates.setAddTemplate);
+  const newTemplate = useStoreState((state) => state.templates.newTemplate);
+  const setNewTemplate = useStoreActions((actions) => actions.templates.setNewTemplate);
+  const saveTemplate = useStoreActions((actions) => actions.templates.saveTemplate);
+  const removeTemplate = useStoreActions((actions) => actions.templates.removeTemplate);
+  const beginEditTemplate = useStoreActions((actions) => actions.templates.beginEditTemplate);
 
   useEffect(() => {
-    if (!addTemplate?.id) {
-      setAddTemplate({ id: uuidv4() });
+    if (route.params.id) {
+      beginEditTemplate({ id: route.params.id });
+      navigation.setOptions({
+        headerRight: () => (
+          <TouchableOpacity
+            onPress={() => {
+              if (route.params.id) {
+                removeTemplate({ id: route.params.id });
+                navigation.goBack();
+              }
+            }}>
+            <Text>Delete</Text>
+          </TouchableOpacity>
+        ),
+      });
+    } else if (!newTemplate?.id) {
+      setNewTemplate({ name: 'New checlist', id: uuidv4() });
     }
   }, []);
 
-  const renderItem = ({ item }: { item: { name: string; control: () => JSX.Element } }) => {
-    return <TouchableOpacity style={styles.row}>{item.control()}</TouchableOpacity>;
+  const renderItem = ({ item }: { item: TemplateAction }) => {
+    return <View style={styles.row}>{componentsMapper(item)}</View>;
   };
 
   return (
@@ -33,12 +53,12 @@ export default function AddTemplateScreen({
       <View style={styles.container}>
         <TextInput
           label="Checklist name"
-          value={addTemplate?.name}
-          onChangeText={(text) => setAddTemplate({ ...addTemplate, name: text })}
+          value={newTemplate?.name}
+          onChangeText={(text) => setNewTemplate({ ...newTemplate, name: text })}
         />
-        <FlatList data={[]} renderItem={renderItem} />
+        <FlatList data={newTemplate?.actions ? newTemplate?.actions : []} renderItem={renderItem} />
         <RoundButton
-          onpress={() => navigation.navigate('AddTemplateActionScreen', { id: addTemplate?.id })}
+          onpress={() => navigation.navigate('AddTemplateActionScreen', { id: newTemplate?.id })}
           viewStyle={{
             bottom: 60,
             borderColor: '#fb0044',
@@ -47,7 +67,15 @@ export default function AddTemplateScreen({
           }}>
           <Ionicons name="add" size={40} color="#fff" />
         </RoundButton>
-        <Button>Save</Button>
+        <Button
+          onpress={() => {
+            if (newTemplate) {
+              saveTemplate(newTemplate);
+              navigation.goBack();
+            }
+          }}>
+          Save
+        </Button>
       </View>
     </SafeAreaView>
   );

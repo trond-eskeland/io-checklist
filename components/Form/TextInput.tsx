@@ -12,21 +12,21 @@ type TextInputFormProps = {
   preview?: boolean;
 };
 
-export default function TextInputForm(props: TextInputFormProps) {
-  const Control = (props: TextInputFormProps) => {
-    const { disabled, value, onChangeText } = props;
-    return (
-      <View style={styles.container}>
-        <TextInput
-          editable={!disabled}
-          style={styles.textInput}
-          value={value || ''}
-          onChangeText={onChangeText}
-        />
-      </View>
-    );
-  };
+const Control = (props: TextInputFormProps) => {
+  const { disabled, value, onChangeText } = props;
+  return (
+    <View style={styles.container}>
+      <TextInput
+        editable={!disabled}
+        style={styles.textInput}
+        value={value || ''}
+        onChangeText={onChangeText}
+      />
+    </View>
+  );
+};
 
+export default function TextInputForm(props: TextInputFormProps) {
   if (props.preview) {
     return (
       <View style={styles.preview}>
@@ -38,7 +38,7 @@ export default function TextInputForm(props: TextInputFormProps) {
 
   return (
     <View style={styles.preview}>
-      {props.label && <Text style={styles.previewText}>{props.label}</Text>}
+      {!!props.label && <Text style={styles.previewText}>{props.label}</Text>}
       <Control {...props} />
     </View>
   );
