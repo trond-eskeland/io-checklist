@@ -3,13 +3,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { useLinkProps } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { FlatList, StyleSheet, TouchableOpacity } from 'react-native';
-import { v4 as uuidv4 } from 'uuid';
 
 import Button from '../components/Button';
 import TextInput from '../components/Form/TextInput';
 import componentsMapper from '../components/Form/componentsMapper';
 import RoundButton from '../components/RoundButton';
 import { View, SafeAreaView, Text } from '../components/Themed';
+import { uuidv4 } from '../services/utils';
 import { useStoreActions, useStoreState } from '../store';
 import { RootStackScreenProps, TemplateAction } from '../types';
 

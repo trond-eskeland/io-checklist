@@ -1,12 +1,12 @@
 import { template } from '@babel/core';
 import React, { useState } from 'react';
 import { FlatList, StyleSheet, TouchableOpacity } from 'react-native';
-import { v4 as uuidv4 } from 'uuid';
 
 import Checkbox from '../components/Form/Checkbox';
 import TextInput from '../components/Form/TextInput';
 import ScreenHeaderTemplate from '../components/ScreenHeaderTemplate';
 import { Text, View, SafeAreaView } from '../components/Themed';
+import { uuidv4 } from '../services/utils';
 import { useStoreActions, useStoreState } from '../store';
 import { RootStackScreenProps, TemplateAction, TemplateActionOption } from '../types';
 
