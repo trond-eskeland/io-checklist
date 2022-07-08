@@ -1,4 +1,4 @@
-import { FontAwesome5 } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import * as WebBrowser from 'expo-web-browser';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 
@@ -20,7 +20,7 @@ export default function ScreenHeaderTemplate({ title }: { title: string }) {
       }}>
       <Text style={Layout.styles.h1}>{title}</Text>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <FontAwesome5 name="sliders-h" size={24} color="black" />
+        <Ionicons name="sliders-h" size={24} color="black" />
       </View>
     </View>
   );

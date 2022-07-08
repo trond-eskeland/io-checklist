@@ -1,4 +1,4 @@
-import { FontAwesome } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useState } from 'react';
@@ -14,7 +14,7 @@ export default function useCachedResources() {
 
         // Load fonts
         await Font.loadAsync({
-          ...FontAwesome.font,
+          ...Ionicons.font,
           'OpenSans-Bold': require('../assets/fonts/OpenSans-Bold.ttf'),
           'OpenSans-Regular': require('../assets/fonts/OpenSans-Regular.ttf'),
           'Roboto-Regular': require('../assets/fonts/Roboto-Regular.ttf'),
