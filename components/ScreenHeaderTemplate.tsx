@@ -20,7 +20,7 @@ export default function ScreenHeaderTemplate({ title }: { title: string }) {
       }}>
       <Text style={Layout.styles.h1}>{title}</Text>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <Ionicons name="sliders-h" size={24} color="black" />
+        <Ionicons name="filter" size={24} color="black" />
       </View>
     </View>
   );

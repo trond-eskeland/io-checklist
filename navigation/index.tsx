@@ -76,7 +76,7 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<'InboxTab'>) => ({
           title: 'Inbox',
           headerStyle: { backgroundColor: 'transparent' },
-          tabBarIcon: ({ color }) => <TabBarIcon name="envelope" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="mail-outline" color={color} />,
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Modal')}
@@ -84,9 +84,9 @@ function BottomTabNavigator() {
                 opacity: pressed ? 0.5 : 1,
               })}>
               <Ionicons
-                name="info-circle"
+                name="md-information-circle-outline"
                 size={25}
-                color={Colors[colorScheme].success}
+                color={Colors[colorScheme].black}
                 style={{ marginRight: 15 }}
               />
             </Pressable>
@@ -97,8 +97,8 @@ function BottomTabNavigator() {
         name="HistoryTab"
         component={HistoryTab}
         options={{
-          title: 'History',
-          tabBarIcon: ({ color }) => <TabBarIcon name="history" color={color} />,
+          title: 'Archive',
+          tabBarIcon: ({ color }) => <TabBarIcon name="archive-outline" color={color} />,
         }}
       />
       <BottomTab.Screen
@@ -106,15 +106,15 @@ function BottomTabNavigator() {
         component={TemplateTab}
         options={{
           title: 'Tempaltes',
-          tabBarIcon: ({ color }) => <TabBarIcon name="clipboard" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="build" color={color} />,
         }}
       />
       <BottomTab.Screen
         name="TaskTab"
         component={TaskTab}
         options={{
-          title: 'Tasks',
-          tabBarIcon: ({ color }) => <TabBarIcon name="calendar-plus" color={color} />,
+          title: 'Schedule task',
+          tabBarIcon: ({ color }) => <TabBarIcon name="calendar-outline" color={color} />,
         }}
       />
     </BottomTab.Navigator>
