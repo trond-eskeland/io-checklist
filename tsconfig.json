@@ -14,7 +14,4 @@
     "strictNullChecks": true,
   },
   "extends": "expo/tsconfig.base",
-  "paths": {
-    "@app": ["/constants/*"],
-  }
 }

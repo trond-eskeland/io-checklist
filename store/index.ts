@@ -1,21 +1,15 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {
-  Action,
-  action,
-  createStore,
-  createTypedHooks,
-  persist,
-  PersistStorage,
-} from 'easy-peasy';
+import { Action, action, createStore, createTypedHooks, persist, PersistStorage } from 'easy-peasy';
 
 import ratingState, { IRating } from './rating';
-
 import settingsStore, { SettingsModel } from './settings';
+import templatesStore, { TemplatesModel } from './templates';
 
 export interface StoreModel {
   rating: IRating;
   settings: SettingsModel;
-  reset: any;
+  templates: TemplatesModel;
+  reset: Action<any>;
 }
 
 const storage: PersistStorage = {
@@ -37,7 +31,6 @@ const storage: PersistStorage = {
   },
 };
 
-
 /*
   window.requestIdleCallback = null; // 👈 The workaround. https://github.com/ctrlplusb/easy-peasy/issues/599#issuecomment-781258630
 */
@@ -49,10 +42,12 @@ const store = createStore<StoreModel>({
     ...{
       rating: ratingState,
       settings: settingsStore,
+      templates: templatesStore,
     },
   })),
   rating: persist<IRating>(ratingState, { mergeStrategy: 'mergeDeep', storage }),
   settings: persist<SettingsModel>(settingsStore, { mergeStrategy: 'mergeDeep', storage }),
+  templates: persist<TemplatesModel>(templatesStore, { mergeStrategy: 'mergeDeep', storage }),
 });
 
 const typedHooks = createTypedHooks<StoreModel>();

@@ -1,35 +1,47 @@
-import { Ionicons } from '@expo/vector-icons';
-import { ColorValue, StyleSheet, TouchableOpacity } from 'react-native';
+import { ColorValue, StyleSheet } from 'react-native';
 
-import Colors from '../../constants/Colors';
 import { Text, View, TextInput } from '../Themed';
 
 type TextInputFormProps = {
+  label?: string;
+  value?: string;
   color?: ColorValue;
   disabled?: boolean;
   onPress?: () => void;
+  onChangeText?: (text: string) => void;
   preview?: boolean;
 };
 
 export default function TextInputForm(props: TextInputFormProps) {
   const Control = (props: TextInputFormProps) => {
-    const { disabled, onPress } = props;
+    const { disabled, value, onChangeText } = props;
     return (
-      <TouchableOpacity disabled={disabled} onPress={onPress} style={styles.container}>
-        <TextInput editable={!disabled} style={styles.textInput} />
-      </TouchableOpacity>
+      <View style={styles.container}>
+        <TextInput
+          editable={!disabled}
+          style={styles.textInput}
+          value={value || ''}
+          onChangeText={onChangeText}
+        />
+      </View>
     );
   };
 
   if (props.preview) {
     return (
       <View style={styles.preview}>
-        <Text style={styles.previewText}>Text input</Text>
+        <Text style={styles.previewText}>{props.label ? props.label : 'Text input'}</Text>
         <Control disabled {...props} />
       </View>
     );
   }
-  return <Control {...props} />;
+
+  return (
+    <View style={styles.preview}>
+      {props.label && <Text style={styles.previewText}>{props.label}</Text>}
+      <Control {...props} />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

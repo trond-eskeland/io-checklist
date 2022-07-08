@@ -10,7 +10,6 @@ export function shuffleArray(array: any[]) {
   return arr;
 }
 
-
 /**
  * @description
  * Takes an Array<V>, and a grouping function,
@@ -37,4 +36,3 @@ export function groupBy(list: any[], keyGetter: Function) {
   });
   return map;
 }
-

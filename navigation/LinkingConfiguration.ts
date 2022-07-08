@@ -37,7 +37,7 @@ const linking: LinkingOptions<RootStackParamList> = {
           },
         },
       },
-      EditTemplateScreen: 'edit-template',
+      AddTemplateScreen: 'edit-template',
       Modal: 'modal',
       NotFound: '*',
     },

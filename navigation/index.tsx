@@ -13,7 +13,8 @@ import { ColorSchemeName, Pressable } from 'react-native';
 import LeftHeaderComponent from '../components/LeftHeaderComponent';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import EditTemplateScreen from '../screens/EditTemplateScreen';
+import AddTemplateActionScreen from '../screens/AddTemplateActionScreen';
+import AddTemplateScreen from '../screens/AddTemplateScreen';
 import HistoryTab from '../screens/HistoryTab';
 import InboxTab from '../screens/InboxTab';
 import LoginScreen from '../screens/LoginScreen';
@@ -45,7 +46,12 @@ function RootNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="EditTemplateScreen" component={EditTemplateScreen} />
+      <Stack.Screen
+        name="AddTemplateScreen"
+        component={AddTemplateScreen}
+        options={{ title: 'Create new checklist' }}
+      />
+      <Stack.Screen name="AddTemplateActionScreen" component={AddTemplateActionScreen} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
@@ -99,7 +105,7 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name="HistoryTab"
         component={HistoryTab}
-        options={{
+        options={({ navigation }: RootTabScreenProps<'HistoryTab'>) => ({
           title: 'Archive',
           headerStyle: { backgroundColor: 'transparent' },
 
@@ -119,7 +125,7 @@ function BottomTabNavigator() {
             </Pressable>
           ),
           headerLeft: () => <LeftHeaderComponent />,
-        }}
+        })}
       />
       <BottomTab.Screen
         name="TempalteTab"

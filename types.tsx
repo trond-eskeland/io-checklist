@@ -17,7 +17,8 @@ export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;
   ManageTeam: undefined;
-  EditTemplateScreen: undefined;
+  AddTemplateScreen: { id?: string };
+  AddTemplateActionScreen: { id?: string };
   NotFound: undefined;
   Login: undefined;
 };
@@ -53,3 +54,15 @@ export type User = {
   id: string;
   uniqId: string;
 };
+
+export type TemplateActionOption = { type: 'checkbox' } | { type: 'input'; multiLine: boolean };
+export interface TemplateAction {
+  title?: string;
+  options: TemplateActionOption;
+  value?: string | number | boolean;
+}
+export interface Template {
+  id?: string;
+  name?: string;
+  actions?: TemplateAction[];
+}

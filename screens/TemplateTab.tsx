@@ -8,7 +8,7 @@ import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 
 export default function TemplateTab({ navigation }: RootTabScreenProps<'TempalteTab'>) {
-  const renderItem = ({ item }) => {
+  const renderItem = ({ item }: { item: any }) => {
     return (
       <View>
         <Text>Test</Text>
@@ -21,7 +21,7 @@ export default function TemplateTab({ navigation }: RootTabScreenProps<'Tempalte
 
       <Button>Jadda</Button>
       <FlatList data={[]} renderItem={renderItem} />
-      <RoundButton onpress={() => navigation.navigate('EditTemplateScreen')}>
+      <RoundButton onpress={() => navigation.navigate('AddTemplateScreen')}>
         <Text>x</Text>
       </RoundButton>
     </View>
