@@ -8,7 +8,7 @@ import Layout from '../constants/Layout';
 export default function ManageTeam() {
   return (
     <View style={styles.container}>
-      <Text style={Layout.styles.h1}>test</Text>
+      <Text style={Layout.styles.h3}>Placeholder for team management</Text>
 
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />

@@ -16,6 +16,7 @@ import useColorScheme from '../hooks/useColorScheme';
 import EditTemplateScreen from '../screens/EditTemplateScreen';
 import HistoryTab from '../screens/HistoryTab';
 import InboxTab from '../screens/InboxTab';
+import LoginScreen from '../screens/LoginScreen';
 import ManageTeam from '../screens/ManageTeam';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
@@ -49,6 +50,7 @@ function RootNavigator() {
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
         <Stack.Screen name="ManageTeam" component={ManageTeam} />
+        <Stack.Screen name="Login" component={LoginScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );

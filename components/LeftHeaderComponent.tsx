@@ -11,7 +11,7 @@ export default function SearchBar(props: object) {
 
   return (
     <Pressable
-      onPress={() => navigation.navigate('ManageTeam')}
+      onPress={() => navigation.navigate('Login')}
       style={({ pressed }) => ({
         opacity: pressed ? 0.5 : 1,
       })}>

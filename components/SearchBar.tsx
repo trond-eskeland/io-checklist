@@ -7,20 +7,21 @@ import { Text, View } from './Themed';
 
 export default function SearchBar(props: object) {
   return (
-    <View style={styles.passwordContainer}>
+    <View style={styles.searchbar}>
       <Ionicons name="ios-search-sharp" size={20} color="black" />
       <TextInput
         style={styles.inputStyle}
         autoCorrect={false}
         placeholder="Search..."
         placeholderTextColor="grey"
+        clearButtonMode={'while-editing'}
       />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  passwordContainer: {
+  searchbar: {
     flexDirection: 'row',
     backgroundColor: 'white',
     borderWidth: 1,
