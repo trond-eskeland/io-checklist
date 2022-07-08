@@ -1,13 +1,19 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { FlatList, ListRenderItem, StyleSheet } from 'react-native';
 
 import ScreenHeaderTemplate from '../components/ScreenHeaderTemplate';
 import { Text, View } from '../components/Themed';
 
 export default function TemplateTab() {
+  const renderItem = ({ item }) => {
+    <View>
+      <Text>Test</Text>
+    </View>;
+  };
   return (
     <View style={styles.container}>
       <ScreenHeaderTemplate title="Templates" />
+      <FlatList data={[]} renderItem={renderItem} />
     </View>
   );
 }

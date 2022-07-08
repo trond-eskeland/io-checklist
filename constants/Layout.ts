@@ -5,11 +5,11 @@ import Colors from './Colors';
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 // const fontBlack = 'Montserrat-Black';
-// const fontBold = 'Montserrat-Bold';
+const fontBold = 'OpenSans-Bold';
 // const fontBlackItalic = 'Montserrat-BoldItalic';
 // const fontLight = 'Montserrat-Light';
 // const fontLightItalic = 'Montserrat-LightItalic';
-// const fontRegular = 'Montserrat-Regular';
+const fontRegular = 'Montserrat-Regular';
 
 const styles = StyleSheet.create({
   // This is a lead paragraph. It stands out from regular paragraphs...
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   h1: {
     fontSize: 42,
     fontWeight: 'bold',
-    // fontFamily: fontBold,
+    fontFamily: fontBold,
     letterSpacing: 0.41,
     // color: Colors.dark.primaryText,
   },

@@ -80,7 +80,7 @@ function BottomTabNavigator() {
               <FontAwesome5
                 name="info-circle"
                 size={25}
-                color={Colors[colorScheme].text}
+                color={Colors[colorScheme].success}
                 style={{ marginRight: 15 }}
               />
             </Pressable>
