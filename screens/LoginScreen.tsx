@@ -6,6 +6,7 @@ import { Platform, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import Button from '../components/Button';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, TextInput, View } from '../components/Themed';
+import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
 
 export default function LoginScreen() {
@@ -25,7 +26,7 @@ export default function LoginScreen() {
             flexDirection: 'row',
             justifyContent: 'flex-start',
             alignItems: 'center',
-            backgroundColor: 'green',
+            backgroundColor: Colors.light.primary,
             borderRadius: 8,
             height: 44,
             marginBottom: 16,

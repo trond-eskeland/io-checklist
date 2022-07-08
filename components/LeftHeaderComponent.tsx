@@ -15,7 +15,7 @@ export default function SearchBar(props: object) {
       style={({ pressed }) => ({
         opacity: pressed ? 0.5 : 1,
       })}>
-      <Ionicons name="people-outline" size={25} color="black" style={{ marginLeft: 15 }} />
+      <Ionicons name="people" size={25} color={Colors.light.text} style={{ marginLeft: 15 }} />
     </Pressable>
   );
 }

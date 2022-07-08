@@ -3,6 +3,7 @@ import React from 'react';
 import { StyleSheet, TextInput, TouchableOpacity, ViewStyle } from 'react-native';
 
 import Colors from '../constants/Colors';
+import Layout from '../constants/Layout';
 import { Text, View } from './Themed';
 
 export default function SearchBar(props: object) {
@@ -10,11 +11,10 @@ export default function SearchBar(props: object) {
     <View style={styles.searchbar}>
       <Ionicons name="ios-search-sharp" size={20} color="black" />
       <TextInput
-        style={styles.inputStyle}
+        style={Layout.styles.p}
         autoCorrect={false}
         placeholder="Search..."
-        placeholderTextColor="grey"
-        clearButtonMode={'while-editing'}
+        placeholderTextColor={Colors.light.foggy}
       />
     </View>
   );
@@ -29,9 +29,5 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 10,
     height: 50,
-  },
-  inputStyle: {
-    flex: 1,
-    fontSize: 17,
   },
 });

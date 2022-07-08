@@ -17,6 +17,7 @@ export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;
   ManageTeam: undefined;
+  ViewArchivedTask: undefined;
   AddTemplateScreen: { id?: string };
   AddTemplateActionScreen: { id?: string };
   NotFound: undefined;

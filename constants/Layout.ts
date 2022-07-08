@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
     fontFamily: fontRegular,
 
     // fontFamily: fontRegular,
-    color: Colors.light.info,
   },
   blockquote: {
     marginLeft: 8,

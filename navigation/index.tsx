@@ -23,6 +23,7 @@ import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import TaskTab from '../screens/TaskTab';
 import TemplateTab from '../screens/TemplateTab';
+import ViewArchivedTask from '../screens/ViewArchivedTask';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
@@ -57,6 +58,11 @@ function RootNavigator() {
         <Stack.Screen name="Modal" component={ModalScreen} />
         <Stack.Screen name="ManageTeam" component={ManageTeam} />
         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen
+          name="ViewArchivedTask"
+          component={ViewArchivedTask}
+          options={{ headerShown: false }}
+        />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -83,7 +89,7 @@ function BottomTabNavigator() {
         options={({ navigation }: RootTabScreenProps<'InboxTab'>) => ({
           title: 'Inbox',
           headerStyle: { backgroundColor: 'transparent' },
-          tabBarIcon: ({ color }) => <TabBarIcon name="mail-outline" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="mail" color={color} />,
 
           headerRight: () => (
             <Pressable
@@ -109,7 +115,7 @@ function BottomTabNavigator() {
           title: 'Archive',
           headerStyle: { backgroundColor: 'transparent' },
 
-          tabBarIcon: ({ color }) => <TabBarIcon name="archive-outline" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="archive" color={color} />,
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Modal')}
@@ -135,7 +141,7 @@ function BottomTabNavigator() {
           headerStyle: { backgroundColor: 'transparent' },
           headerLeft: () => <LeftHeaderComponent />,
 
-          tabBarIcon: ({ color }) => <TabBarIcon name="clipboard-outline" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="clipboard" color={color} />,
         }}
       />
       <BottomTab.Screen
@@ -146,7 +152,7 @@ function BottomTabNavigator() {
           headerStyle: { backgroundColor: 'transparent' },
           headerLeft: () => <LeftHeaderComponent />,
 
-          tabBarIcon: ({ color }) => <TabBarIcon name="calendar-outline" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="calendar" color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -157,5 +163,5 @@ function BottomTabNavigator() {
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
 function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']; color: string }) {
-  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
+  return <Ionicons size={35} style={{ marginBottom: -3 }} {...props} />;
 }

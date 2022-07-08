@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import { StyleSheet, TouchableHighlight, TouchableOpacity } from 'react-native';
@@ -17,10 +18,12 @@ export default function ScreenHeaderTemplate({
   index: number;
   separators: any;
 }) {
+  const navigation = useNavigation();
+
   return (
-    <TouchableOpacity key={item.key} onPress={() => alert(item.title)}>
+    <TouchableOpacity key={item.key} onPress={() => navigation.navigate('ViewArchivedTask')}>
       <View style={styles.listItem}>
-        <Ionicons name="ios-folder-outline" size={18} color={item.color} />
+        <Ionicons name="pricetag" size={18} color={item.color} />
         <View style={{ alignItems: 'left', flex: 1, paddingLeft: 10 }}>
           <Text style={Layout.styles.h3}>{item.title}</Text>
           <Text style={Layout.styles.smallText}>{item.project}</Text>
