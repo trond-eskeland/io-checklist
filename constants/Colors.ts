@@ -4,7 +4,7 @@ const colors = {
     primaryText: '#F6F6F6',
     accentText: '#f2cc8f',
     // Buttons etc.
-    primary: '#BB86FC',
+    primary: '#000',
     info: '#808080',
     //info: '#808080',
     success: '#25F4EE',

@@ -1,13 +1,74 @@
-import { StyleSheet } from 'react-native';
+import { FontAwesome5 } from '@expo/vector-icons';
+import React from 'react';
+import { StyleSheet, TouchableHighlight, FlatList } from 'react-native';
 
+import ScreenHeaderTemplate from '../components/ScreenHeaderTemplate';
 import { Text, View } from '../components/Themed';
+import Layout from '../constants/Layout';
 import { RootTabScreenProps } from '../types';
 
 export default function InboxTab({ navigation }: RootTabScreenProps<'InboxTab'>) {
+  const tasks = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      icon: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Fire Hose Service',
+      project: 'XY Fire Department',
+      due: 'Monday',
+      color: 'red',
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      icon: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Valve Inspection',
+      project: 'Client XZY',
+      due: 'Tuesday',
+      color: 'blue',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      icon: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Prepare Birthday PArty',
+      project: 'Personal',
+      due: 'Friday',
+      color: 'green',
+    },
+  ];
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+      <ScreenHeaderTemplate title="Inbox" />
+      <FlatList
+        data={tasks}
+        renderItem={({ item, index, separators }) => (
+          <TouchableHighlight key={item.key} onPress={() => this._onPress(item)}>
+            <View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  paddingHorizontal: 8,
+                }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <FontAwesome5 name="tag" size={18} color={item.color} />
+                  <Text style={{ ...Layout.styles.h3, paddingLeft: 8 }}> {item.title}</Text>
+                </View>
+                <Text style={{ ...Layout.styles.smallText, color: 'grey' }}>{item.due}</Text>
+              </View>
+              <Text
+                style={{
+                  ...Layout.styles.smallText,
+                  paddingLeft: 33,
+                  paddingBottom: 8,
+                  color: 'grey',
+                }}>
+                {item.project}
+              </Text>
+            </View>
+          </TouchableHighlight>
+        )}
+      />
     </View>
   );
 }
@@ -15,16 +76,6 @@ export default function InboxTab({ navigation }: RootTabScreenProps<'InboxTab'>)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+    paddingHorizontal: 8,
   },
 });

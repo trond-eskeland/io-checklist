@@ -3,7 +3,7 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -62,21 +62,22 @@ function BottomTabNavigator() {
     <BottomTab.Navigator
       initialRouteName="InboxTab"
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
+        tabBarActiveTintColor: Colors[colorScheme].primary,
       }}>
       <BottomTab.Screen
         name="InboxTab"
         component={InboxTab}
         options={({ navigation }: RootTabScreenProps<'InboxTab'>) => ({
           title: 'Inbox',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          headerStyle: { backgroundColor: 'transparent' },
+          tabBarIcon: ({ color }) => <TabBarIcon name="envelope" color={color} />,
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Modal')}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
               })}>
-              <FontAwesome
+              <FontAwesome5
                 name="info-circle"
                 size={25}
                 color={Colors[colorScheme].text}
@@ -91,7 +92,7 @@ function BottomTabNavigator() {
         component={HistoryTab}
         options={{
           title: 'History',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="history" color={color} />,
         }}
       />
       <BottomTab.Screen
@@ -99,7 +100,7 @@ function BottomTabNavigator() {
         component={TemplateTab}
         options={{
           title: 'Tempaltes',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="clipboard" color={color} />,
         }}
       />
       <BottomTab.Screen
@@ -107,7 +108,7 @@ function BottomTabNavigator() {
         component={TaskTab}
         options={{
           title: 'Tasks',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="calendar-plus" color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -118,8 +119,8 @@ function BottomTabNavigator() {
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
 function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
+  name: React.ComponentProps<typeof FontAwesome5>['name'];
   color: string;
 }) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
+  return <FontAwesome5 size={30} style={{ marginBottom: -3 }} {...props} />;
 }

@@ -20,7 +20,7 @@ export default function App() {
       <SafeAreaProvider>
         <StoreProvider store={store}>
           <Rehydrated>
-            <Navigation colorScheme={colorScheme} />
+            <Navigation colorScheme="light" />
           </Rehydrated>
         </StoreProvider>
         <StatusBar />
