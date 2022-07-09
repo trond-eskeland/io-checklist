@@ -13,6 +13,7 @@ import { ColorSchemeName, Pressable } from 'react-native';
 import LeftHeaderComponent from '../components/LeftHeaderComponent';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
+import AddTaskScreen from '../screens/AddTaskScreen';
 import AddTemplateActionScreen from '../screens/AddTemplateActionScreen';
 import AddTemplateScreen from '../screens/AddTemplateScreen';
 import HistoryTab from '../screens/HistoryTab';
@@ -21,6 +22,8 @@ import LoginScreen from '../screens/LoginScreen';
 import ManageTeam from '../screens/ManageTeam';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
+import SelectDateTimeScreen from '../screens/SelectDateTimeScreen';
+import SelectTemplateScreen from '../screens/SelectTemplateScreen';
 import TaskTab from '../screens/TaskTab';
 import TemplateTab from '../screens/TemplateTab';
 import ViewArchivedTask from '../screens/ViewArchivedTask';
@@ -53,7 +56,10 @@ function RootNavigator() {
         options={{ title: 'Create new checklist' }}
       />
       <Stack.Screen name="AddTemplateActionScreen" component={AddTemplateActionScreen} />
+      <Stack.Screen name="AddTaskScreen" component={AddTaskScreen} />
+
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
         <Stack.Screen name="ManageTeam" component={ManageTeam} />
@@ -61,6 +67,16 @@ function RootNavigator() {
         <Stack.Screen
           name="ViewArchivedTask"
           component={ViewArchivedTask}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SelectTemplateScreen"
+          component={SelectTemplateScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SelectDateTimeScreen"
+          component={SelectDateTimeScreen}
           options={{ headerShown: false }}
         />
       </Stack.Group>
@@ -80,9 +96,11 @@ function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="InboxTab"
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].secondary,
-      }}>
+      screenOptions={
+        {
+          // tabBarActiveTintColor: Colors[colorScheme].primary,
+        }
+      }>
       <BottomTab.Screen
         name="InboxTab"
         component={InboxTab}
@@ -100,7 +118,7 @@ function BottomTabNavigator() {
               <Ionicons
                 name="filter"
                 size={25}
-                color={Colors[colorScheme].black}
+                // color={Colors[colorScheme].black}
                 style={{ marginRight: 15 }}
               />
             </Pressable>
@@ -125,7 +143,7 @@ function BottomTabNavigator() {
               <Ionicons
                 name="filter"
                 size={25}
-                color={Colors[colorScheme].black}
+                // color={Colors[colorScheme].black}
                 style={{ marginRight: 15 }}
               />
             </Pressable>

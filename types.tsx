@@ -20,6 +20,9 @@ export type RootStackParamList = {
   ViewArchivedTask: undefined;
   AddTemplateScreen: { id?: string };
   AddTemplateActionScreen: { id?: string };
+  AddTaskScreen: { id?: string };
+  SelectTemplateScreen: { taskId?: string };
+  SelectDateTimeScreen: { isSingleDate: boolean };
   NotFound: undefined;
   Login: undefined;
 };
@@ -57,6 +60,7 @@ export type User = {
 };
 
 export type TemplateActionOption = { type: 'checkbox' } | { type: 'input'; multiLine: boolean };
+
 export interface TemplateAction {
   id?: string;
   title?: string;
@@ -67,4 +71,14 @@ export interface Template {
   id: string;
   name?: string;
   actions?: TemplateAction[];
+}
+
+export type TaskPrioroty = 'High' | 'Medium' | 'Low';
+export interface Task {
+  id: string;
+  name?: string;
+  pritority?: TaskPrioroty;
+  schedule?: any;
+  reminder?: any;
+  template?: Template;
 }

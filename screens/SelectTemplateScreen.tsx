@@ -7,44 +7,34 @@ import ScreenHeaderTemplate from '../components/ScreenHeaderTemplate';
 import { Text, View } from '../components/Themed';
 import { uuidv4 } from '../services/utils';
 import { useStoreActions, useStoreState } from '../store';
-import { RootTabScreenProps, Task } from '../types';
+import { RootTabScreenProps, Template } from '../types';
 
-export default function TaskTab({ navigation }: RootTabScreenProps<'TempalteTab'>) {
+export default function SelectTemplateScreen({
+  navigation,
+  route,
+}: RootTabScreenProps<'TempalteTab'>) {
+  const newTask = useStoreState((state) => state.tasks.newTask);
   const setNewTask = useStoreActions((actions) => actions.tasks.setNewTask);
-  const tasks = useStoreState((state) => state.tasks.tasks);
+  const templates = useStoreState((state) => state.templates.templates);
 
-  const renderItem = ({ item }: { item: Task }) => {
+  const renderItem = ({ item }: { item: Template }) => {
     return (
       <TouchableOpacity
         key={item.id}
         onPress={() => {
-          navigation.navigate('AddTaskScreen', { id: item.id });
+          // navigation.navigate('AddTemplateScreen', { id: item.id });
+          setNewTask({ ...newTask, template: item });
+          navigation.goBack();
         }}
         style={styles.row}>
         <Text>{item.name}</Text>
-        <Text>Pri: {item.pritority}</Text>
+        <Text>Actions: {item.actions?.length}</Text>
       </TouchableOpacity>
     );
   };
   return (
     <View style={styles.container}>
-      <ScreenHeaderTemplate title="Tasks" />
-
-      <FlatList extraData={tasks} data={tasks} renderItem={renderItem} />
-
-      <RoundButton
-        onpress={() => {
-          setNewTask({ name: 'New Task', id: uuidv4() });
-          navigation.navigate('AddTaskScreen', { id: '' });
-        }}
-        viewStyle={{
-          bottom: 10,
-          borderColor: '#fb0044',
-          backgroundColor: '#fb0044',
-          elevation: 4,
-        }}>
-        <Ionicons name="add" size={40} color="#fff" />
-      </RoundButton>
+      <FlatList extraData={templates} data={templates} renderItem={renderItem} />
     </View>
   );
 }
@@ -52,7 +42,7 @@ export default function TaskTab({ navigation }: RootTabScreenProps<'TempalteTab'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 16,
+    paddingHorizontal: 8,
   },
   row: {
     borderWidth: 1,

@@ -8,12 +8,12 @@ export default function Button(props: {
   viewStyle?: ViewStyle;
   textStyle?: ViewStyle;
   children: string | JSX.Element;
-  onpress?: () => void;
+  onPress?: () => void;
 }) {
-  const { viewStyle, textStyle, children, onpress } = props;
+  const { viewStyle, textStyle, children, onPress } = props;
 
   return (
-    <TouchableOpacity onPress={onpress} style={[styles.container, viewStyle]}>
+    <TouchableOpacity onPress={onPress} style={[styles.container, viewStyle]}>
       {typeof children === 'string' ? (
         <Text style={[styles.text, textStyle]}>{children}</Text>
       ) : (
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0,0,0,0.2)',
     alignItems: 'center',
     justifyContent: 'center',
-    minWidth: 150,
+    minWidth: 120,
     height: 50,
     borderRadius: 8,
   },

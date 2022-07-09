@@ -120,7 +120,7 @@ export default function AddTemplateScreen({
           <Ionicons name="add" size={40} color="#fff" />
         </RoundButton>
         <Button
-          onpress={() => {
+          onPress={() => {
             if (newTemplate) {
               saveTemplate(newTemplate);
               navigation.goBack();

@@ -3,12 +3,14 @@ import { Action, action, createStore, createTypedHooks, persist, PersistStorage 
 
 import ratingState, { IRating } from './rating';
 import settingsStore, { SettingsModel } from './settings';
+import tasksStore, { TasksModel } from './tasks';
 import templatesStore, { TemplatesModel } from './templates';
 
 export interface StoreModel {
   rating: IRating;
   settings: SettingsModel;
   templates: TemplatesModel;
+  tasks: TasksModel;
   reset: Action<any>;
 }
 
@@ -43,11 +45,13 @@ const store = createStore<StoreModel>({
       rating: ratingState,
       settings: settingsStore,
       templates: templatesStore,
+      tasks: tasksStore,
     },
   })),
   rating: persist<IRating>(ratingState, { mergeStrategy: 'mergeDeep', storage }),
   settings: persist<SettingsModel>(settingsStore, { mergeStrategy: 'mergeDeep', storage }),
   templates: persist<TemplatesModel>(templatesStore, { mergeStrategy: 'mergeDeep', storage }),
+  tasks: persist<TasksModel>(tasksStore, { mergeStrategy: 'mergeDeep', storage }),
 });
 
 const typedHooks = createTypedHooks<StoreModel>();

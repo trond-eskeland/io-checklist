@@ -8,6 +8,7 @@ import SearchBar from '../components/SearchBar';
 import { Text, View } from '../components/Themed';
 import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
+import { uuidv4 } from '../services/utils';
 import { useStoreActions, useStoreState } from '../store';
 import { RootTabScreenProps, Template } from '../types';
 
@@ -47,7 +48,7 @@ export default function TemplateTab({ navigation }: RootTabScreenProps<'Tempalte
 
       <RoundButton
         onpress={() => {
-          setNewTemplate({ name: 'New Checklist' });
+          setNewTemplate({ name: 'New Checklist', id: uuidv4() });
           navigation.navigate('AddTemplateScreen', { id: '' });
         }}
         viewStyle={{
