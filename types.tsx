@@ -64,7 +64,7 @@ export interface TemplateAction {
   value?: string | number | boolean;
 }
 export interface Template {
-  id?: string;
+  id: string;
   name?: string;
   actions?: TemplateAction[];
 }

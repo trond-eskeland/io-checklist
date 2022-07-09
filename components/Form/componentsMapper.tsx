@@ -5,8 +5,8 @@ import TextInput from './TextInput';
 
 export default function renderCompnent(action: TemplateAction) {
   const mapper = {
-    checkbox: () => <Checkbox label={action.title} />,
-    input: () => <TextInput label={action.title} />,
+    checkbox: () => <Checkbox disabled label={action.title} />,
+    input: () => <TextInput disabled label={action.title} />,
   };
 
   return mapper[action.options.type]();

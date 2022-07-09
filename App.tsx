@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import { StoreProvider } from 'easy-peasy';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';

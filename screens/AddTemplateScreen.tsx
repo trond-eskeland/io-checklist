@@ -3,11 +3,16 @@ import { Ionicons } from '@expo/vector-icons';
 import { useLinkProps } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import DraggableFlatList, {
+  RenderItemParams,
+  ScaleDecorator,
+} from 'react-native-draggable-flatlist';
 
 import Button from '../components/Button';
 import TextInput from '../components/Form/TextInput';
 import componentsMapper from '../components/Form/componentsMapper';
 import RoundButton from '../components/RoundButton';
+import SwipeOut from '../components/Swipeout';
 import { View, SafeAreaView, Text } from '../components/Themed';
 import { uuidv4 } from '../services/utils';
 import { useStoreActions, useStoreState } from '../store';
@@ -22,6 +27,7 @@ export default function AddTemplateScreen({
   const saveTemplate = useStoreActions((actions) => actions.templates.saveTemplate);
   const removeTemplate = useStoreActions((actions) => actions.templates.removeTemplate);
   const beginEditTemplate = useStoreActions((actions) => actions.templates.beginEditTemplate);
+  const removeTemplateAction = useStoreActions((actions) => actions.templates.removeTemplateAction);
 
   useEffect(() => {
     if (route.params.id) {
@@ -44,8 +50,28 @@ export default function AddTemplateScreen({
     }
   }, []);
 
-  const renderItem = ({ item }: { item: TemplateAction }) => {
-    return <View style={styles.row}>{componentsMapper(item)}</View>;
+  // const renderItem = ({ item }: { item: TemplateAction }) => {
+  //   return (
+  //     <ScaleDecorator>
+  //       <View style={styles.row}>{componentsMapper(item)}</View>
+  //     </ScaleDecorator>
+  //   );
+  // };
+
+  const renderItem = ({ item, drag, isActive }: RenderItemParams<TemplateAction>) => {
+    return (
+      <ScaleDecorator>
+        <TouchableOpacity
+          onLongPress={drag}
+          disabled={isActive}
+          style={[styles.row, { backgroundColor: isActive ? 'red' : undefined }]}>
+          <SwipeOut
+            onDelete={() => removeTemplateAction({ templateId: newTemplate.id, action: item })}>
+            <View style={styles.row}>{componentsMapper(item)}</View>
+          </SwipeOut>
+        </TouchableOpacity>
+      </ScaleDecorator>
+    );
   };
 
   return (
@@ -56,7 +82,17 @@ export default function AddTemplateScreen({
           value={newTemplate?.name}
           onChangeText={(text) => setNewTemplate({ ...newTemplate, name: text })}
         />
-        <FlatList data={newTemplate?.actions ? newTemplate?.actions : []} renderItem={renderItem} />
+        <View style={{ flex: 1 }}>
+          <DraggableFlatList
+            style={{ height: '100%' }}
+            data={newTemplate?.actions ? newTemplate?.actions : []}
+            renderItem={renderItem}
+            keyExtractor={(item) => `${item.id}`}
+            onDragEnd={({ data }) => setNewTemplate({ ...newTemplate, actions: data })}
+          />
+        </View>
+
+        {/* <FlatList data={newTemplate?.actions ? newTemplate?.actions : []} renderItem={renderItem} /> */}
         <RoundButton
           onpress={() => navigation.navigate('AddTemplateActionScreen', { id: newTemplate?.id })}
           viewStyle={{
