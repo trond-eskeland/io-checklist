@@ -81,7 +81,7 @@ function BottomTabNavigator() {
     <BottomTab.Navigator
       initialRouteName="InboxTab"
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].primary,
+        tabBarActiveTintColor: Colors[colorScheme].secondary,
       }}>
       <BottomTab.Screen
         name="InboxTab"

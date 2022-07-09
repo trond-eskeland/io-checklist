@@ -4,6 +4,7 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Chip } from 'react-native-paper';
 
 import Button from '../components/Button';
+import TextInputForm from '../components/Form/TextInput';
 import ScreenHeaderTemplate from '../components/ScreenHeaderTemplate';
 import SnackBar from '../components/SnackBar';
 import { Text, View } from '../components/Themed';
@@ -66,7 +67,9 @@ export default function TaskTab() {
         }}
       />
       <Text style={Layout.styles.h3}>Who will be assigned this task?</Text>
-
+      <Chip icon="alarm" mode="flat" onPress={() => console.log('Pressed')}>
+        Low
+      </Chip>
       {/* Use a light status bar on iOS to account for the black space above the modal */}
     </View>
   );

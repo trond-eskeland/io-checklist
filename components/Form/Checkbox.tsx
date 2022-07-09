@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { ColorValue, StyleSheet, TouchableOpacity } from 'react-native';
 
 import Colors from '../../constants/Colors';
+import Layout from '../../constants/Layout';
 import { Text, View } from '../Themed';
 
 type CheckBoxProps = {
@@ -35,7 +36,7 @@ export default function Checkbox(props: CheckBoxProps) {
   }
   return (
     <View style={styles.preview}>
-      {!!props.label && <Text style={styles.previewText}>{props.label}</Text>}
+      {!!props.label && <Text style={[styles.previewText, Layout.styles.lead]}>{props.label}</Text>}
       <Control disabled {...props} />
     </View>
   );
@@ -60,5 +61,6 @@ const styles = StyleSheet.create({
   },
   previewText: {
     paddingBottom: 8,
+    color: Colors.light.foggy,
   },
 });

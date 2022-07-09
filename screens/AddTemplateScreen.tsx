@@ -7,6 +7,8 @@ import DraggableFlatList, {
   RenderItemParams,
   ScaleDecorator,
 } from 'react-native-draggable-flatlist';
+import Toast from 'react-native-root-toast';
+import Snackbar from 'react-native-snackbar';
 
 import Button from '../components/Button';
 import TextInput from '../components/Form/TextInput';
@@ -14,6 +16,8 @@ import componentsMapper from '../components/Form/componentsMapper';
 import RoundButton from '../components/RoundButton';
 import SwipeOut from '../components/Swipeout';
 import { View, SafeAreaView, Text } from '../components/Themed';
+import Colors from '../constants/Colors';
+import Layout from '../constants/Layout';
 import { uuidv4 } from '../services/utils';
 import { useStoreActions, useStoreState } from '../store';
 import { RootStackScreenProps, TemplateAction } from '../types';
@@ -46,7 +50,7 @@ export default function AddTemplateScreen({
         ),
       });
     } else if (!newTemplate?.id) {
-      setNewTemplate({ name: 'New checlist', id: uuidv4() });
+      setNewTemplate({ name: '', id: uuidv4() });
     }
   }, []);
 
@@ -67,7 +71,8 @@ export default function AddTemplateScreen({
           style={[styles.row, { backgroundColor: isActive ? 'red' : undefined }]}>
           <SwipeOut
             onDelete={() => removeTemplateAction({ templateId: newTemplate.id, action: item })}>
-            <View style={styles.row}>{componentsMapper(item)}</View>
+            <View></View>
+            <View>{componentsMapper(item)}</View>
           </SwipeOut>
         </TouchableOpacity>
       </ScaleDecorator>
@@ -77,12 +82,23 @@ export default function AddTemplateScreen({
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
-        <TextInput
-          label="Checklist name"
-          value={newTemplate?.name}
-          onChangeText={(text) => setNewTemplate({ ...newTemplate, name: text })}
-        />
-        <View style={{ flex: 1 }}>
+        {/* <Text style={{ ...Layout.styles.lead, padding: 10 }}>Metadata</Text> */}
+        <View style={{ margin: 15 }}>
+          <TextInput
+            label="Checklist template name:"
+            autofocus={true}
+            placeholder={'Enter a name for your new template...'}
+            value={newTemplate?.name}
+            onChangeText={(text) => setNewTemplate({ ...newTemplate, name: text })}
+          />
+        </View>
+
+        <View
+          style={{
+            flex: 1,
+            paddingTop: 25,
+          }}>
+          <Text style={{ ...Layout.styles.lead, textAlign: 'center' }}>Checklist Actions</Text>
           <DraggableFlatList
             style={{ height: '100%' }}
             data={newTemplate?.actions ? newTemplate?.actions : []}
@@ -97,8 +113,8 @@ export default function AddTemplateScreen({
           onpress={() => navigation.navigate('AddTemplateActionScreen', { id: newTemplate?.id })}
           viewStyle={{
             bottom: 60,
-            borderColor: '#fb0044',
-            backgroundColor: '#fb0044',
+            borderColor: Colors.light.primary,
+            backgroundColor: Colors.light.primary,
             elevation: 4,
           }}>
           <Ionicons name="add" size={40} color="#fff" />
@@ -108,8 +124,15 @@ export default function AddTemplateScreen({
             if (newTemplate) {
               saveTemplate(newTemplate);
               navigation.goBack();
+              const toast = Toast.show('Checklist saved', {
+                duration: Toast.durations.SHORT,
+                position: Toast.positions.CENTER,
+                backgroundColor: Colors.light.secondary,
+              });
             }
-          }}>
+          }}
+          viewStyle={{ backgroundColor: Colors.light.secondary, margin: 10 }}
+          textStyle={{ color: 'white', ...Layout.styles.lead }}>
           Save
         </Button>
       </View>
@@ -124,8 +147,11 @@ const styles = StyleSheet.create({
   },
   row: {
     padding: 8,
-    backgroundColor: '#edebee',
     borderRadius: 8,
+    marginBottom: 8,
+    borderColor: Colors.light.foggy,
+    borderWidth: 1,
+    padding: 8,
     marginBottom: 8,
   },
 });

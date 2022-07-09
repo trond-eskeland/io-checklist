@@ -18,7 +18,7 @@ export default function ScreenHeaderTemplate({
   separators: any;
 }) {
   return (
-    <TouchableOpacity key={item.key} onPress={() => alert(item.title)}>
+    <TouchableOpacity style={styles.row} key={item.key} onPress={() => alert(item.title)}>
       <View style={styles.listItem}>
         <Ionicons name="checkbox-sharp" size={24} color={item.color} />
         <View style={{ alignItems: 'left', flex: 1, paddingLeft: 10 }}>
@@ -76,5 +76,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
+  },
+  row: {
+    borderWidth: 1,
+    borderRadius: 1,
+    borderColor: '#c1becb',
+    padding: 8,
+    marginBottom: 8,
   },
 });

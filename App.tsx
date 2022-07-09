@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';
 import { StoreProvider } from 'easy-peasy';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import { RootSiblingParent } from 'react-native-root-siblings';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import useCachedResources from './hooks/useCachedResources';
@@ -19,12 +20,14 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        <StoreProvider store={store}>
-          <Rehydrated>
-            <Navigation colorScheme={colorScheme} />
-          </Rehydrated>
-        </StoreProvider>
-        <StatusBar />
+        <RootSiblingParent>
+          <StoreProvider store={store}>
+            <Rehydrated>
+              <Navigation colorScheme={colorScheme} />
+            </Rehydrated>
+          </StoreProvider>
+          <StatusBar />
+        </RootSiblingParent>
       </SafeAreaProvider>
     );
   }

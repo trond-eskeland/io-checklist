@@ -111,7 +111,13 @@ export default function HistoryTab() {
         sections={[...newTaskData]}
         renderItem={({ item }) => <HistoryListItem item={item} />}
         renderSectionHeader={({ section }) => (
-          <Text style={{ ...Layout.styles.h2, paddingLeft: 10, paddingBottom: 15 }}>
+          <Text
+            style={{
+              ...Layout.styles.h2,
+              paddingLeft: 10,
+              paddingBottom: 15,
+              backgroundColor: Colors.light.background,
+            }}>
             <Ionicons name="ios-folder-outline" size={18} color={section.color} /> {section.title}
           </Text>
         )}
