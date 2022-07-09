@@ -20,14 +20,14 @@ export default function ScreenHeaderTemplate({
   return (
     <TouchableOpacity key={item.key} onPress={() => alert(item.title)}>
       <View style={styles.listItem}>
-        <Ionicons name="pricetag" size={18} color={item.color} />
+        <Ionicons name="checkbox-sharp" size={24} color={item.color} />
         <View style={{ alignItems: 'left', flex: 1, paddingLeft: 10 }}>
           <Text style={Layout.styles.h3}>{item.title}</Text>
           <Text
             style={{
               ...Layout.styles.smallText,
             }}>
-            {item.project}
+            Completed
           </Text>
         </View>
         <Text style={{ ...Layout.styles.smallText }}>{item.due}</Text>
