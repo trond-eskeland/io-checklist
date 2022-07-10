@@ -18,6 +18,7 @@ import SwipeOut from '../components/Swipeout';
 import { View, SafeAreaView, Text } from '../components/Themed';
 import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
+import showToast from '../services/toast';
 import { uuidv4 } from '../services/utils';
 import { useStoreActions, useStoreState } from '../store';
 import { RootStackScreenProps, TemplateAction } from '../types';
@@ -124,11 +125,7 @@ export default function AddTemplateScreen({
             if (newTemplate) {
               saveTemplate(newTemplate);
               navigation.goBack();
-              const toast = Toast.show('Checklist saved', {
-                duration: Toast.durations.SHORT,
-                position: Toast.positions.CENTER,
-                backgroundColor: Colors.light.secondary,
-              });
+              showToast('Success');
             }
           }}
           viewStyle={{ backgroundColor: Colors.light.secondary, margin: 10 }}
