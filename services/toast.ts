@@ -1,14 +1,16 @@
 import Toast from 'react-native-root-toast';
+import { initialWindowMetrics } from 'react-native-safe-area-context';
 
 import Colors from '../constants/Colors';
 
 export default function showToast(message: string) {
-  const toast = Toast.show(message, {
+  Toast.show(message, {
     duration: Toast.durations.SHORT,
-    position: Toast.positions.TOP,
+    position: initialWindowMetrics?.insets.top || 40,
     shadow: true,
     animation: true,
     textColor: 'white',
+    opacity: 1,
 
     containerStyle: {
       width: '90%',
